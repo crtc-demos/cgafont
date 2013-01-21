@@ -1,4 +1,5 @@
 cgafont
 =======
 
-Making CGA fonts in 100-row text mode.
+Read all about it: http://www.reenigne.org/misc/cga_font.txt
+
