@@ -9,6 +9,8 @@ use strict;
 # output: an array of bitmapped integers
 sub readpatterns { 
 	my $filename = shift;
+	my $inverted = shift; # if 1, also added inverted bitmaps.
+	if ( $#_ <= 0 ) { $inverted = 1; } # default if no inverted arg
 	if ( ! ( -e $filename ) ) { return (); } 
 	my @ret = ();
 	open(PATTERNS, $filename);
@@ -22,6 +24,17 @@ sub readpatterns {
 		$pattern =~ s/\*/1/g;
 		push @ret, unpack("N", pack("B32", substr(("0"x32).$pattern, -32)));
 		}
+	if ( $inverted == 1 ) { 
+		my @additional = ();
+		foreach my $pattern ( @ret ) { 
+			push @additional, (2**16 - 1) - $pattern;
+			}
+		push @ret, @additional;
+		}
+	# finally, remove duplicates.
+	my %seen = ();
+	foreach my $pattern ( @ret ) { $seen{$pattern}++; } 
+ 	@ret = sort keys %seen;
 	return @ret;
 	}
 

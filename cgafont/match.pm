@@ -11,7 +11,7 @@ use strict;
 #   remaining elements = the best pattern found for each pair of rows.
 
 sub match { 
-	my %font = %{$_[0]};	 # array of 8 bit.
+	my %font = %{$_[0]};	 # array of 8-bit integers.
 	my $character = $_[1];
 	my @patterns = @{$_[2]}; # 16 bit
 
@@ -36,7 +36,7 @@ sub match {
 			my $difference = length($binary);
 			if ( $minimum == -1 || $difference < $minimum ) { 
 				$minimum = $difference;
-				$minimumat = $patternnumber;
+				$minimumat = $pattern;
 				}
 			}
 

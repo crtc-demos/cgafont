@@ -10,17 +10,30 @@ use strict;
 my @patterns = readpatterns("patterns/patterns.txt");
 
 ## Just some test code for now:
-
 my %test = ();
-my @achar = (124,130,130,130,130,130,124,0); $test{'0'} = \@achar;
-my @echar = (240,240,240,240,15,15,15,15); $test{'e'} = \@echar;
-my @rchar = ();
-for ( my $i = 0; $i < 8 ; $i++ ) { push @rchar, int(rand(256)); }
-$test{'r'} = \@rchar;
+
+my @cchar = (
+	     64+ 32+          4+  2    ,
+	128+              8            ,
+	128+ 64+ 32+      8            ,
+	                                 0,
+	128+ 64+ 32+          4+  2    ,
+	     64+          8            ,
+	     64+          8+  4+  2    ,
+	                                 0);
+$test{'c'} = \@cchar;
 draw(\%test);
-print "\n";
-print "diff(0) = ".join(",", match(\%test, "0", \@patterns))."\n";
-print "diff(e) = ".join(",", match(\%test, "e", \@patterns))."\n";
-print "diff(r) = ".join(",", match(\%test, "r", \@patterns))."\n";
+
+my %closest = ();
+my @match = match(\%test, "c", \@patterns);
+shift @match; # the score
+my @closest = ();
+foreach my $row ( @match ) { 
+	push @closest, int($row / 256);
+	push @closest, $row % 256;
+	}
+$closest{'c'} = \@closest;
+draw(\%closest);
+
 
 exit;
