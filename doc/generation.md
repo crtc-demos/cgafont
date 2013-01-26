@@ -48,8 +48,8 @@ Points always have one-character names.
 This doesn't give the generator much freedom to change the font, so we 
 vary the constraints on these objects.
 
-   perturb a uniform limit=0.1
-   perturb a gaussian sd=0.2
+    perturb a uniform limit=0.1
+    perturb a gaussian sd=0.2
 
 This will allow the generator to change the position of the point, but 
 only within limits. A variation will impose a lower fitness on the 
@@ -73,8 +73,8 @@ font.
 
 Lines are defined by two points.
 
-   thicken [ab bc] uniform range=0.05..0.2
-   thicken [ab bc] gaussian mean=0.12 sd=0.07
+    thicken [ab bc] uniform range=0.05..0.2
+    thicken [ab bc] gaussian mean=0.12 sd=0.07
 
 This will allow the generator to use a thickness of the given range, but 
 it must be applied to all the line segments listed between the square 
@@ -85,8 +85,8 @@ brackets.
 Corners are defined by three points, with the corner being on the middle 
 point.
 
-   bevel abc uniform range=0..0.2
-   bevel abc gaussian mean=0.1 sd=0.05
+    bevel abc uniform range=0..0.2
+    bevel abc gaussian mean=0.1 sd=0.05
 
 This will allow the generator to draw a bevel effect on the corner 
 defined. The bevel may be of a size between those listed.
