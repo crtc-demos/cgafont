@@ -9,7 +9,7 @@ use strict;
 sub draw { 
 	if ( $#_ == -1 ) { return; } 
 	my %font = %{$_[0]};
-	foreach my $key ( keys %font ) { 
+	foreach my $key ( sort keys %font ) { 
 		print "$key\n";
 		foreach my $line ( @{$font{$key}} ) { 
 			my $bits = substr(unpack("B32", pack("N", $line)), -8);
